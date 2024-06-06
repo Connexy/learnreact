@@ -10,10 +10,12 @@ export default function TextForm(props) {
 
         var uppercase = text.toUpperCase();
         setText(uppercase);
+        props.showAlert("converted to uppercase", "success");
     }
     const handleonClickLower = () => {
         var lowercase = text.toLowerCase();
         setText(lowercase);
+        props.showAlert("converted to lowercase", "success");
     }
     const handleonClickTitle = () => {
         // split text into an array of words 
@@ -27,15 +29,17 @@ export default function TextForm(props) {
         const titleCasedText = titleCaseWords.join(" ");
         // update the state
         setText(titleCasedText);
+        props.showAlert("converted to titlecase", "success");
     }
     const handleonClickClear = () => {
         setText("");
+        props.showAlert("text cleared", "success");
     }
     return (
         <>
             <div className='container' style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
                 <h2>{props.title}</h2>
-                <div className="mb-3">
+                <div className=" container mb-3">
                     <textarea type="text" onChange={handleonChange} value={text} className="form-control " rows="8" style={{ backgroundColor: props.mode === 'dark' ? 'grey' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }} />
                 </div>
                 <button className="btn btn-primary mx-2" onClick={handleonClickUpper} >Uppercase</button>
@@ -50,7 +54,7 @@ export default function TextForm(props) {
             </div>
             <div className="container" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
                 <h2>Preview</h2>
-                <p>{text.length>0?text:"Enter something in textbox above to preview here."}</p>
+                <p>{text.length > 0 ? text : "Enter something in textbox above to preview here."}</p>
             </div>
         </>
     )
